@@ -18,6 +18,9 @@
       color: #fff;
       padding: 1.5rem;
       text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     header h1 {
       margin: 0;
@@ -32,6 +35,10 @@
       text-decoration: none;
       font-weight: bold;
       cursor: pointer;
+      transition: color 0.3s;
+    }
+    nav a.active {
+      color: #ff9800;
     }
     section {
       padding: 50px 20px;
@@ -55,9 +62,10 @@
       width: 250px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       text-align: center;
+      transition: transform 0.2s;
     }
-    .card h3 {
-      margin-top: 0;
+    .card:hover {
+      transform: translateY(-5px);
     }
     footer {
       background: #222;
@@ -82,6 +90,23 @@
     }
     button:hover {
       background: #444;
+    }
+    /* Scroll to top button */
+    #topBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff9800;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+    #topBtn:hover {
+      background: #e68900;
     }
   </style>
 </head>
@@ -164,6 +189,9 @@
     <p>&copy; 2025 Merlin Nikitha L. All Rights Reserved.</p>
   </footer>
 
+  <!-- Scroll to top button -->
+  <button id="topBtn">⬆</button>
+
   <script>
     // Dynamic greeting based on time
     const hour = new Date().getHours();
@@ -183,6 +211,40 @@
         alert("📧 Email copied to clipboard!");
       });
     }
+
+    // Highlight active nav link while scrolling
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (scrollY >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+
+    // Scroll to top button
+    const topBtn = document.getElementById("topBtn");
+    window.onscroll = function() {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        topBtn.style.display = "block";
+      } else {
+        topBtn.style.display = "none";
+      }
+    };
+    topBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   </script>
 
 </body>
