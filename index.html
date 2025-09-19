@@ -5,26 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Portfolio - Merlin Nikitha L</title>
   <style>
+    /* ====== General Styles ====== */
     body {
-      font-family: Arial, sans-serif;
+      font-family: "Poppins", sans-serif;
       margin: 0;
       padding: 0;
       line-height: 1.6;
       color: #333;
       scroll-behavior: smooth;
+      background: #fdfdfd;
     }
+    h2 {
+      margin-bottom: 20px;
+      color: #222;
+      font-size: 2rem;
+      text-align: center;
+      position: relative;
+    }
+    h2::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: #ff9800;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ====== Header ====== */
     header {
-      background: #222;
+      background: linear-gradient(135deg, #222, #444);
       color: #fff;
       padding: 1.5rem;
       text-align: center;
       position: sticky;
       top: 0;
       z-index: 1000;
+      animation: slideDown 1s ease;
     }
     header h1 {
       margin: 0;
-      font-size: 2rem;
+      font-size: 2.2rem;
+      letter-spacing: 2px;
     }
     nav {
       margin-top: 10px;
@@ -35,19 +57,22 @@
       text-decoration: none;
       font-weight: bold;
       cursor: pointer;
-      transition: color 0.3s;
+      transition: color 0.3s, transform 0.3s;
+    }
+    nav a:hover {
+      color: #ff9800;
+      transform: scale(1.1);
     }
     nav a.active {
       color: #ff9800;
     }
+
+    /* ====== Sections ====== */
     section {
-      padding: 50px 20px;
-      max-width: 1000px;
+      padding: 60px 20px;
+      max-width: 1100px;
       margin: auto;
-    }
-    h2 {
-      margin-bottom: 20px;
-      color: #444;
+      animation: fadeIn 1s ease;
     }
     .skills, .projects, .experience {
       display: flex;
@@ -56,41 +81,59 @@
       flex-wrap: wrap;
     }
     .card {
-      background: #f4f4f4;
+      background: #fff;
       padding: 20px;
-      border-radius: 8px;
-      width: 250px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      width: 260px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
-      transition: transform 0.2s;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: popUp 1s ease;
     }
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     }
+
+    /* ====== About Section ====== */
+    .about p {
+      max-width: 850px;
+      margin: auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+
+    /* ====== Buttons ====== */
+    button {
+      margin-top: 10px;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 8px;
+      background: #ff9800;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
+    }
+    button:hover {
+      background: #e68900;
+      transform: scale(1.05);
+    }
+
+    /* ====== Footer ====== */
     footer {
       background: #222;
       color: #fff;
       text-align: center;
-      padding: 15px;
+      padding: 20px;
       margin-top: 20px;
+      font-size: 0.9rem;
+      animation: slideUp 1s ease;
     }
-    .about p {
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.1rem;
-    }
-    button {
-      margin-top: 10px;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      background: #222;
-      color: #fff;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #444;
-    }
+
     /* Scroll to top button */
     #topBtn {
       display: none;
@@ -99,19 +142,40 @@
       right: 20px;
       background: #ff9800;
       color: white;
-      padding: 10px 15px;
+      padding: 12px 16px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 18px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      font-size: 20px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
     }
     #topBtn:hover {
       background: #e68900;
+      transform: scale(1.1);
+    }
+
+    /* ====== Animations ====== */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    @keyframes popUp {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ====== Header ====== -->
   <header>
     <h1>Merlin Nikitha L</h1>
     <p id="greeting">Welcome to my portfolio 👋</p>
@@ -124,61 +188,66 @@
     </nav>
   </header>
 
+  <!-- ====== About Section ====== -->
   <section id="about" class="about">
-  <h2>About Me</h2>
-  <p>
-    I'm a final year BCA student with a passion for <b>drawing and painting</b>.  
-    When I'm not coding, you can find me sketching or creating traditional art pieces that bring my imagination to life.  
-    <br><br>
-    I'm deeply interested in <b>Web Development</b> and currently learning <b>Full Stack Development</b>.  
-    I’m fascinated by the intersection of code and creativity, especially exploring 
-    <b>art and human-computer interaction</b>.  
-    <br><br>
-    I believe creativity doesn’t just apply to art—it applies to every aspect of life, from problem-solving to innovative thinking in technology.  
-    <br><br>
-    As a programmer, I enjoy working with <b>Python, Node.js, and React</b>.  
-  </p>
-</section>
+    <h2>About Me</h2>
+    <p>
+      I'm a final year <b>BCA student</b> with a passion for <b>drawing and painting</b>.  
+      When I'm not coding, you can find me sketching or creating traditional art pieces that bring my imagination to life.  
+      <br><br>
+      I'm deeply interested in <b>Web Development</b> and currently learning <b>Full Stack Development</b>.  
+      I enjoy exploring the intersection of <b>art and human-computer interaction</b>.  
+      <br><br>
+      Creativity for me extends to <b>problem-solving, teamwork, and innovative thinking</b>.  
+      <br><br>
+      As a programmer, I enjoy working with <b>Python, Node.js, and React</b>.  
+    </p>
+  </section>
 
+  <!-- ====== Skills Section ====== -->
   <section id="skills">
     <h2>Skills</h2>
     <div class="skills">
       <div class="card">Frontend Development (ReactJS, JavaScript, HTML, CSS)</div>
-      <div class="card">Python Programming (Learning)</div>
+      <div class="card">Python Programming</div>
       <div class="card">Node.js</div>
       <div class="card">AI & Machine Learning (Learning)</div>
-      <div class="card">Traditional Art (Drawing & Painting)</div>
+      <div class="card">UI/UX Designing</div>
+      <div class="card">Digital Art & Animation</div>
     </div>
   </section>
 
+  <!-- ====== Experience Section ====== -->
   <section id="experience">
     <h2>Experience</h2>
     <div class="experience">
       <div class="card">
         <h3>Software Developer Intern - Involve</h3>
-        <p>Currently working on different projects (1-year duration). Gaining hands-on experience in software development.</p>
+        <p>Currently working on remote projects (1-year duration). Gaining hands-on experience in teamwork, debugging, and application development.</p>
       </div>
       <div class="card">
         <h3>Social Worker Intern - Manasa Sichrem</h3>
-        <p>1-month internship. Learned about the Constitution, laws, and worked on case studies.</p>
+        <p>21-day internship. Learned about the Constitution, laws, and worked on case studies while contributing as a team player.</p>
       </div>
     </div>
   </section>
 
+  <!-- ====== Projects Section ====== -->
   <section id="projects">
     <h2>Projects</h2>
     <div class="projects">
       <div class="card">
-        <h3>Project 1</h3>
-        <p>A web app built with React (will attach it soon).</p>
+        <h3>Student Leader Application</h3>
+        <p>Team project built with Python & Django. Contributed in testing and problem-solving.</p>
       </div>
       <div class="card">
-        <h3>Project 2</h3>
-        <p>Python/AI/ML project (will attach it soon).</p>
+        <h3>Pratihwani App</h3>
+        <p>School application using React, HTML, CSS, and JS. Contributed in features, debugging & team leadership.</p>
       </div>
     </div>
   </section>
 
+  <!-- ====== Contact Section ====== -->
   <section id="contact">
     <h2>Contact Me</h2>
     <p>Email: <span id="email">merlinnikitha1234@gmail.com</span></p>
@@ -187,6 +256,7 @@
     <p>GitHub: <a href="https://github.com/nikitha-yo" target="_blank">github.com/nikitha-yo</a></p>
   </section>
 
+  <!-- ====== Footer ====== -->
   <footer>
     <p>&copy; 2025 Merlin Nikitha L. All Rights Reserved.</p>
   </footer>
@@ -195,7 +265,7 @@
   <button id="topBtn">⬆</button>
 
   <script>
-    // Dynamic greeting based on time
+    // Dynamic greeting
     const hour = new Date().getHours();
     const greetingText = document.getElementById("greeting");
     if (hour < 12) {
@@ -214,10 +284,9 @@
       });
     }
 
-    // Highlight active nav link while scrolling
+    // Highlight active nav link
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll("nav a");
-
     window.addEventListener("scroll", () => {
       let current = "";
       sections.forEach(section => {
@@ -226,7 +295,6 @@
           current = section.getAttribute("id");
         }
       });
-
       navLinks.forEach(link => {
         link.classList.remove("active");
         if (link.getAttribute("href") === "#" + current) {
